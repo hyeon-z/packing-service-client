@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-function PackingList({packingLists}) {
+function AllPackingList({packingLists}) {
     useEffect(() => {
     }, []);
 
@@ -37,4 +37,4 @@ function PackingList({packingLists}) {
     );
 }
 
-export default PackingList;
+export default AllPackingList;

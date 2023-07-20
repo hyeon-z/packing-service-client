@@ -32,7 +32,7 @@ function CreatePackingList() {
             .then(response => {
                 console.log(newPackingList);
                 if (response.ok) {
-                    navigate('/packingList');
+                    navigate('/packingList/all');
                     window.location.reload();
                 } else {
                     console.log('Failed to add packing list.');

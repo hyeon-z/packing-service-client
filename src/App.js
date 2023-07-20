@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import PackingList from './pages/PackingList';
+import AllPackingList from "./pages/AllPackingList";
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import CreatePackingList from "./pages/CreatePackingList";
@@ -23,7 +23,7 @@ function App() {
                 <Nav/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/packingList" element={<PackingList packingLists={packingLists}/>}/>
+                    <Route path="/packingList/all" element={<AllPackingList packingLists={packingLists}/>}/>
                     <Route path="/packingList/create" element={<CreatePackingList/>}/>
                 </Routes>
             </div>
