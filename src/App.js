@@ -6,6 +6,7 @@ import AllPackingList from "./pages/AllPackingList";
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import CreatePackingList from "./pages/CreatePackingList";
+import PackingList from "./pages/PackingList";
 
 function App() {
     const [packingLists, setPackingLists] = useState([]);
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/" element={<Home/>}/>
                     <Route path="/packingList/all" element={<AllPackingList packingLists={packingLists}/>}/>
                     <Route path="/packingList/create" element={<CreatePackingList/>}/>
+                    <Route path="/packingList/:id" element={<PackingList/>}/>
                 </Routes>
             </div>
         </Router>

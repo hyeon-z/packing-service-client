@@ -1,16 +1,16 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 
 function AllPackingList({packingLists}) {
-    useEffect(() => {
-    }, []);
-
+    const handleRowClick = (id) => {
+        window.location.href = `/packingList/${id}`;
+    };
 
     return (
         <div>
             <div className="container mt-4">
                 <h2>패킹 리스트</h2>
-                <table className="table table-bordered table-striped">
+                <table className="table table-bordered table-hover">
                     <thead>
                     <tr>
                         <th>리스트 명</th>
@@ -19,7 +19,7 @@ function AllPackingList({packingLists}) {
                     </thead>
                     <tbody>
                     {packingLists.map((packingList) => (
-                        <tr key={packingList.id}>
+                        <tr key={packingList.id} onClick={() => handleRowClick(packingList.id)}>
                             <td>{packingList.title}</td>
                             <td>{packingList.departureDate}</td>
                         </tr>
