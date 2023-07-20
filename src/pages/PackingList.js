@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 function PackingList() {
     const {id} = useParams();
@@ -41,6 +41,13 @@ function PackingList() {
                 <p>설명: {packingList.description}</p>
 
                 <h2>패킹 리스트</h2>
+
+                <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                    <Link to="/pack/create" className="btn btn-primary me-md-2">
+                        추가
+                    </Link>
+                </div>
+
                 <table className="table table-bordered table-hover">
                     <thead>
                     <tr>
