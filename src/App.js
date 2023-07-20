@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import PackingList from './pages/PackingList';
 import Nav from './components/Nav';
 import Home from './pages/Home';
+import CreatePackingList from "./pages/CreatePackingList";
 
 function App() {
     const [packingLists, setPackingLists] = useState([]);
@@ -23,6 +24,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/packingList" element={<PackingList packingLists={packingLists}/>}/>
+                    <Route path="/packingList/create" element={<CreatePackingList/>}/>
                 </Routes>
             </div>
         </Router>
