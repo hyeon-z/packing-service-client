@@ -1,16 +1,28 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import PackingList from './pages/PackingList';
 import Nav from './components/Nav';
 import Home from './pages/Home';
 
 function App() {
+    const [packingLists, setPackingLists] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/api/v1/packingList')
+            .then((response) => response.json())
+            .then((data) => setPackingLists(data))
+            .catch((error) => console.log(error));
+    }, []);
+
     return (
         <Router>
             <div>
                 <Nav/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
+                    <Route path="/packingList" element={<PackingList packingLists={packingLists}/>}/>
                 </Routes>
             </div>
         </Router>
