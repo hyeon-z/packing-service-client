@@ -46,3 +46,22 @@
   font-family: 'CustomFontBold';
   src: url('../public/fonts/SUITE-ExtraBold.ttf') format('truetype');
 }
+
+.custom-checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f8f9fa
+}
+
+.custom-checkbox:checked {
+  background-color: #007bff;
+}
+
+.container h3 {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}

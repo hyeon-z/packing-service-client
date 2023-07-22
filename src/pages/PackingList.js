@@ -116,19 +116,20 @@ function PackingList() {
     return (
         <div style={{fontFamily: 'CustomFont, sans-serif'}}>
             <div className="container mt-4">
-                <h2>{packingList.title}</h2>
-                <p>출발 날짜: {packingList.departureDate}</p>
+                <h3>패킹리스트</h3>
+                <p>제목: {packingList.title}</p>
+                <p style={{marginBottom: '100px'}}>출발 날짜: {packingList.departureDate}</p>
                 {packingList.description && <p>설명: {packingList.description}</p>}
 
-                <h2>패킹 리스트</h2>
+                <h3>짐 목록</h3>
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                    <Button color="primary" onClick={() => setShowModal(true)}>
+                    <Button color="primary" onClick={() => setShowModal(true)} style={{marginBottom: '30px'}}>
                         추가
                     </Button>
                 </div>
 
-                <table className="table table-bordered table-hover">
+                <table className="table table-bordered table-hover" style={{textAlign: 'center'}}>
                     <thead>
                     <tr>
                         <th className="text-center bg-info-subtle"
@@ -155,9 +156,11 @@ function PackingList() {
                                     type="checkbox"
                                     checked={item.checked}
                                     onChange={() => handleCheckBoxChange(item.id, !item.checked)}
+                                    className="custom-checkbox"
                                 />
                             </td>
-                            <td onClick={(e) => handleCellClick(e, item)} style={{cursor: 'pointer'}}>
+                            <td onClick={(e) => handleCellClick(e, item)}
+                                style={{cursor: 'pointer'}}>
                                 :
                             </td>
                         </tr>
