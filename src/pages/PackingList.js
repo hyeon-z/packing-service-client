@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import CreatePack from './CreatePack';
+import EditPack from './EditPack';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
 function PackingList() {
@@ -45,9 +46,10 @@ function PackingList() {
         }
     };
 
-    const handleEditClick = () => {
+    const handleEditClick = (pack) => {
+        setSelectedPack(pack);
         setShowEditModal(true);
-        setShowModal(false);
+        setShowTaskModal(false);
     };
 
     const handleDeleteClick = () => {
@@ -55,9 +57,11 @@ function PackingList() {
         setShowModal(false);
     };
 
-    const handleEditConfirm = () => {
-        console.log('Edit packing list:', selectedPack);
-        setShowEditModal(false);
+    const handleUpdatePack = (updatedPack) => {
+        const updatedPackingItems = packingItems.map((item) =>
+            item.id === updatedPack.id ? {...item, name: updatedPack.name, category: updatedPack.category} : item
+        );
+        setPackingItems(updatedPackingItems);
     };
 
     const handleDeleteConfirm = () => {
@@ -139,13 +143,7 @@ function PackingList() {
                 </table>
             </div>
 
-            <CreatePack
-                show={showModal}
-                onClose={() => {
-                    setShowModal(false);
-                }}
-                packingListId={id}
-            />
+            <CreatePack show={showModal} onClose={() => setShowModal(false)} packingListId={id}/>
 
             {showTaskModal && (
                 <Modal isOpen={showTaskModal} toggle={() => setShowTaskModal(false)}>
@@ -154,23 +152,25 @@ function PackingList() {
                         <p>수정 또는 삭제를 선택하세요.</p>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={handleEditClick}>수정</Button>{' '}
-                        <Button color="danger" onClick={handleDeleteClick}>삭제</Button>{' '}
-                        <Button color="secondary" onClick={() => setShowTaskModal(false)}>취소</Button>
+                        <Button color="primary" onClick={() => handleEditClick(selectedPack)}>
+                            수정
+                        </Button>{' '}
+                        <Button color="danger" onClick={handleDeleteClick}>
+                            삭제
+                        </Button>{' '}
+                        <Button color="secondary" onClick={() => setShowTaskModal(false)}>
+                            취소
+                        </Button>
                     </ModalFooter>
                 </Modal>
             )}
 
-            <Modal isOpen={showEditModal} toggle={() => setShowEditModal(false)}>
-                <ModalHeader toggle={() => setShowEditModal(false)}>짐 수정</ModalHeader>
-                <ModalBody>
-                    <div>짐 수정 폼</div>
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={handleEditConfirm}>확인</Button>{' '}
-                    <Button color="secondary" onClick={() => setShowEditModal(false)}>취소</Button>
-                </ModalFooter>
-            </Modal>
+            <EditPack
+                show={showEditModal}
+                onClose={() => setShowEditModal(false)}
+                selectedPack={selectedPack}
+                onUpdate={handleUpdatePack}
+            />
 
             <Modal isOpen={showDeleteModal} toggle={() => setShowDeleteModal(false)}>
                 <ModalHeader toggle={() => setShowDeleteModal(false)}>짐 삭제</ModalHeader>
@@ -178,12 +178,15 @@ function PackingList() {
                     <p>정말로 짐을 삭제하시겠습니까?</p>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="danger" onClick={handleDeleteConfirm}>삭제</Button>{' '}
-                    <Button color="secondary" onClick={handleDeleteCancel}>취소</Button>
+                    <Button color="danger" onClick={handleDeleteConfirm}>
+                        삭제
+                    </Button>{' '}
+                    <Button color="secondary" onClick={handleDeleteCancel}>
+                        취소
+                    </Button>
                 </ModalFooter>
             </Modal>
         </div>
-
     );
 }
 
