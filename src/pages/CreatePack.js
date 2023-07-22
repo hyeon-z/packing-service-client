@@ -68,10 +68,10 @@ function CreatePack() {
                     <option value="" disabled>
                         카테고리 선택
                     </option>
-                    <option value="FOOD">음식</option>
-                    <option value="CLOTHING">의류</option>
-                    <option value="ELECTRONICS">전자제품</option>
-                    {/* 기타 옵션들을 필요에 따라 추가 */}
+                    <option value="의류">의류</option>
+                    <option value="세면용품">세면용품</option>
+                    <option value="음식">음식</option>
+                    <option value="기타">기타</option>
                 </select>
             </div>
             <div className="d-grid gap-2 col-6 mx-auto">
