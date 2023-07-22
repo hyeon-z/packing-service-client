@@ -61,8 +61,29 @@ function PackingList() {
     };
 
     const handleDeleteConfirm = () => {
-        console.log('Delete packing list with id:', selectedPack.id);
-        setShowDeleteModal(false);
+        if (!selectedPack) {
+            console.error('No selected pack.');
+            setShowDeleteModal(false);
+            return;
+        }
+
+        fetch(`http://localhost:8080/api/v1/pack/${selectedPack.id}`, {
+            method: 'DELETE',
+        })
+            .then((response) => {
+                if (response.ok) {
+                    window.location.reload();
+                    console.log('Delete success');
+                    setShowDeleteModal(false);
+                } else {
+                    console.error('Error deleting pack:', response);
+                    setShowDeleteModal(false);
+                }
+            })
+            .catch((error) => {
+                console.error('Error deleting pack:', error);
+                setShowDeleteModal(false);
+            });
     };
 
     const handleDeleteCancel = () => {
