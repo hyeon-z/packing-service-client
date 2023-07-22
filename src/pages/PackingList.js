@@ -82,6 +82,7 @@ function PackingList() {
                 onClose={() => {
                     setShowModal(false);
                 }}
+                packingListId={id}
             />
         </div>
     );

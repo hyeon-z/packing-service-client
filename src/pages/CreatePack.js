@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
-function CreatePack({show, onClose}) {
+function CreatePack({show, onClose, packingListId}) {
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
 
@@ -13,6 +13,7 @@ function CreatePack({show, onClose}) {
         }
 
         const newPack = {
+            packingListId: packingListId,
             name: name,
             category: category,
         };
