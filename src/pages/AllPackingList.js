@@ -35,20 +35,39 @@ function AllPackingList({packingLists}) {
     const handleEditConfirm = () => {
         console.log('Edit packing list:', selectedPackingList);
         setShowEditModal(false);
-
     };
 
     const handleDeleteConfirm = () => {
-        console.log('Delete packing list:', selectedPackingList.id);
-        setShowDeleteModal(false);
+        if (!selectedPackingList) {
+            console.error('No selected packing list.');
+            setShowDeleteModal(false);
+            return;
+        }
+
+        fetch(`http://localhost:8080/api/v1/packingList/${selectedPackingList.id}`, {
+            method: 'DELETE',
+        })
+            .then((response) => {
+                if (response.ok) {
+                    window.location.reload();
+                    console.log('Delete success ');
+                    setShowDeleteModal(false);
+                } else {
+                    console.error('Error deleting packing list:', response);
+                    setShowDeleteModal(false);
+                }
+            })
+            .catch((error) => {
+                console.error('Error deleting packing list:', error);
+                setShowDeleteModal(false);
+            });
     };
 
     const handleDeleteCancel = () => {
         setShowDeleteModal(false);
     };
 
-    return (
-        <div>
+    return (<div>
             <div className="container mt-4">
                 <h2>패킹 리스트</h2>
                 <table className="table table-bordered table-hover">
