@@ -149,7 +149,7 @@ function PackingList() {
 
             {showTaskModal && (
                 <Modal isOpen={showTaskModal} toggle={() => setShowTaskModal(false)}>
-                    <ModalHeader toggle={() => setShowTaskModal(false)}>패킹리스트 작업 선택</ModalHeader>
+                    <ModalHeader toggle={() => setShowTaskModal(false)}>짐 작업 선택</ModalHeader>
                     <ModalBody>
                         <p>수정 또는 삭제를 선택하세요.</p>
                     </ModalBody>
@@ -162,9 +162,9 @@ function PackingList() {
             )}
 
             <Modal isOpen={showEditModal} toggle={() => setShowEditModal(false)}>
-                <ModalHeader toggle={() => setShowEditModal(false)}>패킹리스트 수정</ModalHeader>
+                <ModalHeader toggle={() => setShowEditModal(false)}>짐 수정</ModalHeader>
                 <ModalBody>
-                    <div>패킹리스트 수정 폼</div>
+                    <div>짐 수정 폼</div>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={handleEditConfirm}>확인</Button>{' '}
@@ -173,9 +173,9 @@ function PackingList() {
             </Modal>
 
             <Modal isOpen={showDeleteModal} toggle={() => setShowDeleteModal(false)}>
-                <ModalHeader toggle={() => setShowDeleteModal(false)}>패킹리스트 삭제</ModalHeader>
+                <ModalHeader toggle={() => setShowDeleteModal(false)}>짐 삭제</ModalHeader>
                 <ModalBody>
-                    <p>정말로 패킹리스트를 삭제하시겠습니까?</p>
+                    <p>정말로 짐을 삭제하시겠습니까?</p>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="danger" onClick={handleDeleteConfirm}>삭제</Button>{' '}
