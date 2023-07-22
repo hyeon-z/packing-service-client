@@ -41,7 +41,7 @@ function PackingList() {
             <div className="container mt-4">
                 <h2>{packingList.title}</h2>
                 <p>출발 날짜: {packingList.departureDate}</p>
-                <p>설명: {packingList.description}</p>
+                {packingList.description && <p>설명: {packingList.description}</p>}
 
                 <h2>패킹 리스트</h2>
 
