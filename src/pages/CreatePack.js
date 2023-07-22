@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import {useNavigate} from 'react-router-dom';
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
-function CreatePack() {
+function CreatePack({show, onClose}) {
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
-    const navigate = useNavigate();
 
     const handleConfirm = () => {
         if (!name || !category) {
@@ -27,59 +26,63 @@ function CreatePack() {
             body: JSON.stringify(newPack),
         })
             .then((response) => {
-                console.log(newPack);
                 if (response.ok) {
-                    navigate('/packingList/all');
+                    onClose();
                     window.location.reload();
                 } else {
-                    console.log('Failed to add packing list.');
+                    console.log('Failed to add pack.');
                 }
             })
             .catch((error) => console.error('Error:', error));
     };
 
     return (
-        <div className="container mt-4">
-            <h2 className="mb-4">짐 추가</h2>
-            <div className="mb-3">
-                <label htmlFor="formGroupExampleInput" className="form-label">
-                    짐 이름 <span className="text-danger">*</span>
-                </label>
-                <input
-                    type="text"
-                    className="form-control"
-                    id="formGroupExampleInput"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required // 필수 입력 속성 추가
-                />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="categorySelect" className="form-label">
-                    카테고리 <span className="text-danger">*</span>
-                </label>
-                <select
-                    className="form-select"
-                    id="categorySelect"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    required // 필수 입력 속성 추가
-                >
-                    <option value="" disabled>
-                        카테고리 선택
-                    </option>
-                    <option value="의류">의류</option>
-                    <option value="세면용품">세면용품</option>
-                    <option value="음식">음식</option>
-                    <option value="기타">기타</option>
-                </select>
-            </div>
-            <div className="d-grid gap-2 col-6 mx-auto">
-                <button className="btn btn-primary" type="button" onClick={handleConfirm}>
+        <Modal isOpen={show} toggle={onClose}>
+            <ModalHeader toggle={onClose}>짐 추가</ModalHeader>
+            <ModalBody>
+                <div className="mb-3">
+                    <label htmlFor="formGroupExampleInput" className="form-label">
+                        짐 이름 <span className="text-danger">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="formGroupExampleInput"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="categorySelect" className="form-label">
+                        카테고리 <span className="text-danger">*</span>
+                    </label>
+                    <select
+                        className="form-select"
+                        id="categorySelect"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        required
+                    >
+                        <option value="" disabled>
+                            카테고리 선택
+                        </option>
+                        <option value="의류">의류</option>
+                        <option value="세면용품">세면용품</option>
+                        <option value="음식">음식</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </div>
+            </ModalBody>
+            <ModalFooter>
+                <Button color="primary" onClick={handleConfirm}>
                     확인
-                </button>
-            </div>
-        </div>
+                </Button>
+                <Button color="secondary" onClick={onClose}>
+                    취소
+                </Button>
+            </ModalFooter>
+        </Modal>
     );
 }
 

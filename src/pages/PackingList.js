@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
+import CreatePack from './CreatePack';
+import {Button} from 'reactstrap';
 
 function PackingList() {
     const {id} = useParams();
     const [packingList, setPackingList] = useState(null);
     const [packingItems, setPackingItems] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/v1/packingList/${id}`)
@@ -43,9 +46,9 @@ function PackingList() {
                 <h2>패킹 리스트</h2>
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                    <Link to="/pack/create" className="btn btn-primary me-md-2">
+                    <Button color="primary" onClick={() => setShowModal(true)}>
                         추가
-                    </Link>
+                    </Button>
                 </div>
 
                 <table className="table table-bordered table-hover">
@@ -73,6 +76,13 @@ function PackingList() {
                     </tbody>
                 </table>
             </div>
+
+            <CreatePack
+                show={showModal}
+                onClose={() => {
+                    setShowModal(false);
+                }}
+            />
         </div>
     );
 }
