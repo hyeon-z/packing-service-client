@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
+import {format} from 'date-fns';
 
 function CreatePackingList({show, onClose}) {
     const [title, setTitle] = useState('');
@@ -14,10 +15,12 @@ function CreatePackingList({show, onClose}) {
             return;
         }
 
+        const formattedDate = format(departureDate, 'yyyy-MM-dd');
+
         const newPackingList = {
             title: title,
             description: description,
-            departureDate: departureDate,
+            departureDate: formattedDate,
         };
 
         fetch('http://localhost:8080/api/v1/packingList', {
