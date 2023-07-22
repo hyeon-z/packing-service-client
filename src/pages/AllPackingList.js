@@ -1,7 +1,10 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Button} from 'reactstrap';
+import CreatePackingList from './CreatePackingList';
 
 function AllPackingList({packingLists}) {
+    const [showModal, setShowModal] = useState(false);
+
     const handleRowClick = (id) => {
         window.location.href = `/packingList/${id}`;
     };
@@ -28,11 +31,20 @@ function AllPackingList({packingLists}) {
                 </table>
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                    <Link to="/packingList/create" className="btn btn-primary me-md-2">
+                    <Button color="primary" onClick={() => setShowModal(true)}>
                         추가
-                    </Link>
+                    </Button>
                 </div>
             </div>
+
+            {showModal && (
+                <CreatePackingList
+                    show={showModal}
+                    onClose={() => {
+                        setShowModal(false);
+                    }}
+                />
+            )}
         </div>
     );
 }
