@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('../public/fonts/SUITE-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'CustomFontBold';
+  src: url('../public/fonts/SUITE-ExtraBold.ttf') format('truetype');
+}
