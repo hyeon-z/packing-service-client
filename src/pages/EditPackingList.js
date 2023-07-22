@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import { parseISO, format } from 'date-fns';
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
+import {format, parseISO} from 'date-fns';
+import '../App.css';
 
-function EditPackingList({ show, onClose, selectedPackingList }) {
+function EditPackingList({show, onClose, selectedPackingList}) {
     const [title, setTitle] = useState(selectedPackingList?.title || '');
     const [description, setDescription] = useState(selectedPackingList?.description || '');
     const [departureDate, setDepartureDate] = useState(
@@ -37,7 +38,7 @@ function EditPackingList({ show, onClose, selectedPackingList }) {
     };
 
     return (
-        <Modal isOpen={show} toggle={onClose}>
+        <Modal isOpen={show} toggle={onClose} style={{fontFamily: 'CustomFont, sans-serif'}}>
             <ModalHeader toggle={onClose}>패킹리스트 수정</ModalHeader>
             <ModalBody>
                 <div className="mb-3">

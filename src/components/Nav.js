@@ -3,7 +3,11 @@ import {Link} from 'react-router-dom';
 
 function Nav() {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <nav
+            className="navbar navbar-expand-lg bg-body-tertiary"
+            data-bs-theme="dark"
+            style={{fontFamily: 'CustomFont, sans-serif'}}
+        >
             <div className="container-fluid">
                 <Link to="/" className="navbar-brand">Packing🧳</Link>
 

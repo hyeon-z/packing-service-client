@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
+import '../App.css';
 
 function EditPack({show, onClose, selectedPack, onUpdate}) {
     const [name, setName] = useState('');
@@ -49,7 +50,7 @@ function EditPack({show, onClose, selectedPack, onUpdate}) {
     };
 
     return (
-        <Modal isOpen={show} toggle={onClose}>
+        <Modal isOpen={show} toggle={onClose} style={{fontFamily: 'CustomFont, sans-serif'}}>
             <ModalHeader toggle={onClose}>짐 수정</ModalHeader>
             <ModalBody>
                 <div className="mb-3">

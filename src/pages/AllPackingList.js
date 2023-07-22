@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import CreatePackingList from './CreatePackingList';
 import EditPackingList from './EditPackingList';
+import '../App.css';
 
 function AllPackingList({packingLists}) {
     const [showTaskModal, setShowTaskModal] = useState(false);
@@ -51,7 +52,7 @@ function AllPackingList({packingLists}) {
             .then((response) => {
                 if (response.ok) {
                     window.location.reload();
-                    console.log('Delete success ');
+                    console.log('Delete success');
                     setShowDeleteModal(false);
                 } else {
                     console.error('Error deleting packing list:', response);
@@ -68,39 +69,53 @@ function AllPackingList({packingLists}) {
         setShowDeleteModal(false);
     };
 
-    return (<div>
-            <div className="container mt-4">
-                <h2>패킹 리스트</h2>
-                <table className="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th>리스트 명</th>
-                        <th>출발 날짜</th>
-                        <th>작업</th>
+    return (
+        <div className="container mt-4" style={{fontFamily: 'CustomFont, sans-serif'}}>
+            <h2 className="text-center mb-4">패킹 리스트</h2>
+            <table className="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>리스트 명
+                    </th>
+                    <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>출발 날짜
+                    </th>
+                    <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>작업
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {packingLists.map((packingList) => (
+                    <tr key={packingList.id}>
+                        <td
+                            className="text-center table-link"
+                            style={{cursor: 'pointer'}}
+                            onClick={() => handleRowClick(packingList.id)}
+                        >
+                            {packingList.title}
+                        </td>
+                        <td
+                            className="text-center table-link"
+                            style={{cursor: 'pointer'}}
+                            onClick={() => handleRowClick(packingList.id)}
+                        >
+                            {packingList.departureDate}
+                        </td>
+                        <td
+                            className="text-center table-link"
+                            style={{cursor: 'pointer'}}
+                            onClick={(e) => handleCellClick(e, packingList)}
+                        >
+                            :
+                        </td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    {packingLists.map((packingList) => (
-                        <tr key={packingList.id}>
-                            <td onClick={() => handleRowClick(packingList.id)} style={{cursor: 'pointer'}}>
-                                {packingList.title}
-                            </td>
-                            <td onClick={() => handleRowClick(packingList.id)} style={{cursor: 'pointer'}}>
-                                {packingList.departureDate}
-                            </td>
-                            <td onClick={(e) => handleCellClick(e, packingList)} style={{cursor: 'pointer'}}>
-                                :
-                            </td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
+                ))}
+                </tbody>
+            </table>
 
-                <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                    <Button color="primary" onClick={() => setShowModal(true)}>
-                        추가
-                    </Button>
-                </div>
+            <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                <Button color="primary" onClick={() => setShowModal(true)}>
+                    추가
+                </Button>
             </div>
 
             {showModal && (
@@ -123,49 +138,59 @@ function AllPackingList({packingLists}) {
             )}
 
             {showTaskModal && (
-                <Modal isOpen={showTaskModal} toggle={() => setShowTaskModal(false)}>
-                    <ModalHeader toggle={() => setShowTaskModal(false)}>패킹리스트 작업 선택</ModalHeader>
+                <Modal isOpen={showTaskModal} toggle={() => setShowTaskModal(false)}
+                       style={{fontFamily: 'CustomFont, sans-serif'}}>
+                    <ModalHeader toggle={() => setShowTaskModal(false)}>
+                        패킹리스트 작업 선택
+                    </ModalHeader>
                     <ModalBody>
                         <p>수정 또는 삭제를 선택하세요.</p>
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={handleEditClick}>
                             수정
-                        </Button>{' '}
+                        </Button>{" "}
                         <Button color="danger" onClick={handleDeleteClick}>
                             삭제
-                        </Button>{' '}
-                        <Button color="secondary" onClick={() => setShowTaskModal(false)}>
+                        </Button>{" "}
+                        <Button color="secondary" onClick={() => setShowTaskModal(false)}
+                                style={{fontFamily: 'CustomFont, sans-serif'}}>
                             취소
                         </Button>
                     </ModalFooter>
                 </Modal>
             )}
 
-            <Modal isOpen={showEditModal} toggle={() => setShowEditModal(false)}>
-                <ModalHeader toggle={() => setShowEditModal(false)}>패킹리스트 수정</ModalHeader>
+            <Modal isOpen={showEditModal} toggle={() => setShowEditModal(false)}
+                   style={{fontFamily: 'CustomFont, sans-serif'}}>
+                <ModalHeader toggle={() => setShowEditModal(false)}>
+                    패킹리스트 수정
+                </ModalHeader>
                 <ModalBody>
                     <div>패킹리스트 수정 폼</div>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={handleEditConfirm}>
                         확인
-                    </Button>{' '}
+                    </Button>{" "}
                     <Button color="secondary" onClick={() => setShowEditModal(false)}>
                         취소
                     </Button>
                 </ModalFooter>
             </Modal>
 
-            <Modal isOpen={showDeleteModal} toggle={() => setShowDeleteModal(false)}>
-                <ModalHeader toggle={() => setShowDeleteModal(false)}>패킹리스트 삭제</ModalHeader>
+            <Modal isOpen={showDeleteModal} toggle={() => setShowDeleteModal(false)}
+                   style={{fontFamily: 'CustomFont, sans-serif'}}>
+                <ModalHeader toggle={() => setShowDeleteModal(false)}>
+                    패킹리스트 삭제
+                </ModalHeader>
                 <ModalBody>
                     <p>정말로 패킹리스트를 삭제하시겠습니까?</p>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="danger" onClick={handleDeleteConfirm}>
                         삭제
-                    </Button>{' '}
+                    </Button>{" "}
                     <Button color="secondary" onClick={handleDeleteCancel}>
                         취소
                     </Button>

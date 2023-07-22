@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import {format} from 'date-fns';
+import '../App.css';
 
 function CreatePackingList({show, onClose}) {
     const [title, setTitle] = useState('');
@@ -42,7 +43,7 @@ function CreatePackingList({show, onClose}) {
     };
 
     return (
-        <Modal isOpen={show} toggle={onClose}>
+        <Modal isOpen={show} toggle={onClose} style={{fontFamily: 'CustomFont, sans-serif'}}>
             <ModalHeader toggle={onClose}>패킹리스트 추가</ModalHeader>
             <ModalBody>
                 <div className="mb-3">

@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom';
 import CreatePack from './CreatePack';
 import EditPack from './EditPack';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
+import '../App.css';
 
 function PackingList() {
     const {id} = useParams();
@@ -113,7 +114,7 @@ function PackingList() {
     }
 
     return (
-        <div>
+        <div style={{fontFamily: 'CustomFont, sans-serif'}}>
             <div className="container mt-4">
                 <h2>{packingList.title}</h2>
                 <p>출발 날짜: {packingList.departureDate}</p>
@@ -130,10 +131,18 @@ function PackingList() {
                 <table className="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>카테고리</th>
-                        <th>짐 이름</th>
-                        <th>챙김 여부</th>
-                        <th>작업</th>
+                        <th className="text-center bg-info-subtle"
+                            style={{fontFamily: 'CustomFontBold, sans-serif'}}>카테고리
+                        </th>
+                        <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>짐
+                            이름
+                        </th>
+                        <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>챙김
+                            여부
+                        </th>
+                        <th className="text-center bg-info-subtle"
+                            style={{fontFamily: 'CustomFontBold, sans-serif'}}>작업
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -160,7 +169,8 @@ function PackingList() {
             <CreatePack show={showModal} onClose={() => setShowModal(false)} packingListId={id}/>
 
             {showTaskModal && (
-                <Modal isOpen={showTaskModal} toggle={() => setShowTaskModal(false)}>
+                <Modal isOpen={showTaskModal} toggle={() => setShowTaskModal(false)}
+                       style={{fontFamily: 'CustomFont, sans-serif'}}>
                     <ModalHeader toggle={() => setShowTaskModal(false)}>짐 작업 선택</ModalHeader>
                     <ModalBody>
                         <p>수정 또는 삭제를 선택하세요.</p>
@@ -186,7 +196,8 @@ function PackingList() {
                 onUpdate={handleUpdatePack}
             />
 
-            <Modal isOpen={showDeleteModal} toggle={() => setShowDeleteModal(false)}>
+            <Modal isOpen={showDeleteModal} toggle={() => setShowDeleteModal(false)}
+                   style={{fontFamily: 'CustomFont, sans-serif'}}>
                 <ModalHeader toggle={() => setShowDeleteModal(false)}>짐 삭제</ModalHeader>
                 <ModalBody>
                     <p>정말로 짐을 삭제하시겠습니까?</p>
