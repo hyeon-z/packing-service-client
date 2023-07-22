@@ -9,7 +9,7 @@ function Nav() {
             style={{fontFamily: 'CustomFont, sans-serif'}}
         >
             <div className="container-fluid">
-                <Link to="/" className="navbar-brand">Packing🧳</Link>
+                <Link to="/" className="navbar-brand">Let's Pack🧳</Link>
 
                 <button
                     className="navbar-toggler"
