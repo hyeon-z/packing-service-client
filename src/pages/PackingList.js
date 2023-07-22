@@ -118,7 +118,7 @@ function PackingList() {
             <div className="container mt-4">
                 <h3>패킹리스트</h3>
                 <p>제목: {packingList.title}</p>
-                <p style={{marginBottom: '100px'}}>출발 날짜: {packingList.departureDate}</p>
+                <p>출발 날짜: {packingList.departureDate}</p>
                 {packingList.description && <p>설명: {packingList.description}</p>}
 
                 <h3>짐 목록</h3>
@@ -135,11 +135,9 @@ function PackingList() {
                         <th className="text-center bg-info-subtle"
                             style={{fontFamily: 'CustomFontBold, sans-serif'}}>카테고리
                         </th>
-                        <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>짐
-                            이름
+                        <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>짐 이름
                         </th>
-                        <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>챙김
-                            여부
+                        <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>챙김 여부
                         </th>
                         <th className="text-center bg-info-subtle"
                             style={{fontFamily: 'CustomFontBold, sans-serif'}}>작업
