@@ -29,7 +29,7 @@ function PackingList() {
         setPackingItems(updatedPackingItems);
     };
 
-    if (!packingList || packingItems.length === 0) {
+    if (!packingList) {
         return <div>Loading...</div>;
     }
 
