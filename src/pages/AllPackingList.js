@@ -63,9 +63,19 @@ function AllPackingList({packingLists}) {
                     </Button>
                 </div>
             </div>
+
             {showModal && (
-                <Modal isOpen={showModal} toggle={() => setShowModal(false)}>
-                    <ModalHeader toggle={() => setShowModal(false)}>패킹리스트 작업 선택</ModalHeader>
+                <CreatePackingList
+                    show={showModal}
+                    onClose={() => {
+                        setShowModal(false);
+                    }}
+                />
+            )}
+
+            {showTaskModal && (
+                <Modal isOpen={showTaskModal} toggle={() => setShowTaskModal(false)}>
+                    <ModalHeader toggle={() => setShowTaskModal(false)}>패킹리스트 작업 선택</ModalHeader>
                     <ModalBody>
                         <p>수정 또는 삭제를 선택하세요.</p>
                     </ModalBody>
