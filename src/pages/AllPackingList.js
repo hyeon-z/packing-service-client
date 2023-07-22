@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import CreatePackingList from './CreatePackingList';
+import EditPackingList from './EditPackingList';
 
 function AllPackingList({packingLists}) {
     const [showTaskModal, setShowTaskModal] = useState(false);
@@ -108,6 +109,16 @@ function AllPackingList({packingLists}) {
                     onClose={() => {
                         setShowModal(false);
                     }}
+                />
+            )}
+
+            {showEditModal && (
+                <EditPackingList
+                    show={showEditModal}
+                    onClose={() => {
+                        setShowEditModal(false);
+                    }}
+                    selectedPackingList={selectedPackingList}
                 />
             )}
 
