@@ -30,11 +30,25 @@ function PackingList() {
             .catch((error) => console.log(error));
     }, [id]);
 
-    const handleCheckBoxChange = (itemId) => {
+    const handleCheckBoxChange = (itemId, checked) => {
         const updatedPackingItems = packingItems.map((item) =>
-            item.id === itemId ? {...item, checked: !item.checked} : item
+            item.id === itemId ? {...item, checked} : item
         );
         setPackingItems(updatedPackingItems);
+
+        fetch(`http://localhost:8080/api/v1/pack/${itemId}?checked=${checked}`, {
+            method: 'PATCH',
+        })
+            .then((response) => {
+                if (response.ok) {
+                    console.log('Checked status updated successfully.');
+                } else {
+                    console.error('Error updating checked status:', response);
+                }
+            })
+            .catch((error) => {
+                console.error('Error updating checked status:', error);
+            });
     };
 
     const handleCellClick = (event, pack) => {
@@ -131,7 +145,7 @@ function PackingList() {
                                 <input
                                     type="checkbox"
                                     checked={item.checked}
-                                    onChange={() => handleCheckBoxChange(item.id)}
+                                    onChange={() => handleCheckBoxChange(item.id, !item.checked)}
                                 />
                             </td>
                             <td onClick={(e) => handleCellClick(e, item)} style={{cursor: 'pointer'}}>
