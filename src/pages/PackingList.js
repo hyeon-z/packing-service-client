@@ -135,7 +135,7 @@ function PackingList() {
                         <th className="text-center bg-info-subtle"
                             style={{fontFamily: 'CustomFontBold, sans-serif'}}>카테고리
                         </th>
-                        <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>짐 이름
+                        <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>이름
                         </th>
                         <th className="text-center bg-info-subtle" style={{fontFamily: 'CustomFontBold, sans-serif'}}>챙김 여부
                         </th>

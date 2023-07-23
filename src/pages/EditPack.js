@@ -55,7 +55,7 @@ function EditPack({show, onClose, selectedPack, onUpdate}) {
             <ModalBody>
                 <div className="mb-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">
-                        짐 이름 <span className="text-danger">*</span>
+                        이름 <span className="text-danger">*</span>
                     </label>
                     <input
                         type="text"
