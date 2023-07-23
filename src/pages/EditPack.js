@@ -40,6 +40,7 @@ function EditPack({show, onClose, selectedPack, onUpdate}) {
                 return response.json();
             })
             .then((data) => {
+                window.location.reload();
                 onUpdate(data);
                 onClose();
             })
