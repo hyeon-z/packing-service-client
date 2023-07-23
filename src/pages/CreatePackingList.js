@@ -48,7 +48,7 @@ function CreatePackingList({show, onClose}) {
             <ModalBody>
                 <div className="mb-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">
-                        패킹리스트 제목 <span className="text-danger">*</span>
+                        제목 <span className="text-danger">*</span>
                     </label>
                     <input
                         type="text"
