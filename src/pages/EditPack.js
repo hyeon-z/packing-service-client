@@ -36,12 +36,12 @@ function EditPack({show, onClose, selectedPack, onUpdate}) {
                 if (!response.ok) {
                     throw new Error('네트워크 오류 - 서버 응답이 올바르지 않습니다.');
                 }
-                // 만약에 응답에 따른 처리가 필요하다면 여기서 처리할 수 있습니다.
+
                 return response.json();
             })
             .then((data) => {
-                onUpdate(data); // 업데이트된 데이터를 상위 컴포넌트로 전달합니다.
-                onClose(); // 모달을 닫습니다.
+                onUpdate(data);
+                onClose();
             })
             .catch((error) => {
                 console.error('API 호출 오류:', error);
